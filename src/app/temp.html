@@ -1,0 +1,131 @@
+<app-nav></app-nav>
+
+
+    <div class="jumbotron">
+        <div class="col-lg-5">
+            <h1>MOVE RATE</h1>    
+            <h4>See your top recommended cities.</h4>
+            <br><br><br>
+            <div class="mybutton-center">
+                
+            <button type="button" class="btn btn-outline-info ">Sign up</button>
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+
+    <div id="container">
+
+    <section class="wrapper">
+        <div class="container-fostrap">
+
+            <h6 class="recommendations">Your Recommendations</h6>
+            <div class="content">
+
+                      <div
+                        ng2-carouselamos
+                        class="slides-wrapper"
+                        [items]="cityRates"
+                        [width]="900"
+                        [$prev]="prev"
+                        [$next]="next"
+                        [$item]="city"
+                        >
+                      </div>
+                    
+
+                    <ng-template #prev>
+                      
+                    <i class="fa fa-lg fa-chevron-left" id="left"></i>
+
+                    </ng-template>
+
+                    <ng-template #next>
+                      <i class="fa fa-lg fa-chevron-right" id="right"></i>
+                    </ng-template>
+
+
+                    <ng-template #city let-item let-i="index">
+
+                    <div class="items">
+
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="card">
+                                <a class="img-card">
+                                <img src="http://i.imgur.com/Hw7sWGU.png" />
+                              </a>
+                                <div class="card-content">
+                                    <h4 class="card-title">
+                                        <a> {{item.mycity_name}}
+                                      </a>
+                                    </h4>
+
+    <ngb-rating [(rate)]="item.mycity_rating" max="5" [readonly]="readonly">
+      <ng-template let-fill="fill" let-index="index">
+        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+                                </div>
+                                <div class="card-read-more">
+                                    <a class="btn btn-link btn-block">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    </ng-template>
+
+            </div>
+        </div>
+    </section>
+    </div>
+
+
+
+
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h6 class="recommendations">All Cities</h6>
+        </div>
+    
+    <div *ngFor="let d of allcityRates" >
+        <div class="col-lg-3 col-md-3 col-xs-6 ">
+
+            <div class="mycard">
+                <a class="">
+                    <img class="img-responsive" src="http://i.imgur.com/Hw7sWGU.png" alt="">
+                </a>
+                <div class="mycard-title">
+                        {{d.allcity_name}}
+                </div>
+
+                <ngb-rating [(rate)]="d.allcity_rating" max="5">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3" (click)="changeRating(index)">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+</div>
+<!-- /.container -->
+
+<!-- *ngFor="let user of allcityRates" -->
